@@ -23,6 +23,7 @@ export interface Child {
 }
 
 export interface ChildData {
+    // from_where:                    string;
     approved_at_utc:               null;
     subreddit:                     string;
     selftext:                      string;

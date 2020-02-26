@@ -1,3 +1,100 @@
-.h1 {
-    font-weight: 100;
+h1 {
+    font-size: 60px;
 }
+h2 {
+    font-weight: 100;
+    font-size: x-large;
+}
+h1, h2 {
+    color: white;
+}
+
+input {
+    border-radius: 30;
+    padding-left: 100;
+    padding-right: 100;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: #fefdf8;   /* FloralWhite; ghostwhite; */
+    position: relative;
+}
+
+/*--- navigation bar ---*/
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar {
+background:#424242;
+}
+
+.nav-link,
+.navbar-brand {
+color: white;
+cursor: pointer;
+}
+
+.nav-link {
+margin-right: 1em;
+}
+
+.nav-link:hover {
+color: black;
+}
+
+.navbar-collapse {
+justify-content: flex-end;
+}
+
+/*--- header portion ---*/
+
+.jumbotron {
+    background-color: #424242;
+    border-radius: 0;
+}
+
+.header {
+background-size: cover;        /* Resize the background image to cover the entire container */
+background-position: center;
+position: relative;  
+}
+
+/*--- search ---*/
+.search {
+    padding: 20px; 
+    width: 80%;
+    height: 15px;
+    padding-left: 30px;
+    border: transparent;
+    outline: none !important;
+}
+
+.input-container {
+    position: relative;
+    border-radius: 25px;
+    border: 2px solid #424242;
+}
+
+.icon {
+    padding-left: 25px;
+}
+
+
+
+
+
+/*--- adjust to make the page look better on small screens ---*/
+
+@media only screen and (max-width: 768px) {
+    h1 {
+        line-height: 1.1em;
+    } 
+    .description p {
+        font-size: 1rem;
+        line-height: 1em;
+    }
+} 

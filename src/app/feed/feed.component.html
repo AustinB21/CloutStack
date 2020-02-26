@@ -1,1 +1,7 @@
-<p>feed works!</p>
+<div *ngFor="let post of posts">
+    <p>{{ post.name }}</p>
+
+    <blockquote class="twitter-tweet" tw-align-center data-lang="en"><p lang="en" dir="ltr">Let us know! 👂<br>What type of content would you like to see from us this year?</p>&mdash; HubSpot (@HubSpot) <a href="https://twitter.com/HubSpot/status/1085634067679322114?ref_src=twsrc%5Etfw">January 16, 2019</a></blockquote>
+</div>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
