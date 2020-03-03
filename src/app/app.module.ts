@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
+import { PostComponent } from './post/post.component';
 
 
 
@@ -14,7 +15,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     FeedComponent,
-    LoginComponent
+    LoginComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

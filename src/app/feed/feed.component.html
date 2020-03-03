@@ -1,15 +1,7 @@
 <div class="container">
     <div class="row">
-        <div *ngFor="let post of posts" class="post col-lg">
-            <div [ngClass]="{
-                'header-twitter' : post.from_where === 'twitter',
-                'header-reddit' : post.from_where === 'reddit'
-            }" class="header">                
-                <span>
-                    <fa-icon *ngIf="post.from_where === 'twitter'" class="icon fa-lg" [icon]="faIcons.faTwitter"></fa-icon>
-                    <fa-icon *ngIf="post.from_where === 'reddit'" class="icon fa-lg" [icon]="faIcons.faReddit"></fa-icon>
-                </span><p>{{ post.title && post.title.slice(0, 28) + '...' || post.name }}</p>
-            </div>
+        <div *ngFor="let post of posts" class="col-xl">
+            <app-post [post]="post"></app-post>
         </div>
     </div>
 </div>
