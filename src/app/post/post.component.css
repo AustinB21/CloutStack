@@ -1,0 +1,45 @@
+.post {
+    position: relative;
+    border-radius: 25px;
+    height: 500px;
+    margin: 20px;
+    padding: 0px;
+    border: 2px solid #424242;
+    
+}
+
+.header {
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    display: inline-flex;
+    height: 30px;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-twitter {
+    background-color: #03a9f4;
+}
+
+.header-reddit {
+    background-color: #f44336;
+}
+
+.icon {
+    color: white;
+    margin: 10px;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #424242;
+}
