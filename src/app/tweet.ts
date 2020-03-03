@@ -22,5 +22,5 @@ export interface Trend {
     promoted_content: null;
     query:            string;
     tweet_volume:     number | null;
-    // from_where:       string;
+    from_where:       string;
 }

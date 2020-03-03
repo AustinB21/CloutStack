@@ -105,7 +105,7 @@ export interface ChildData {
     subreddit_id:                  string;
     mod_reason_by:                 null;
     removal_reason:                null;
-    link_flair_background_color:   LinkFlairBackgroundColor;
+    link_flair_background_color:   null | string;
     id:                            string;
     is_robot_indexable:            boolean;
     report_reasons:                null;
@@ -128,6 +128,7 @@ export interface ChildData {
     media:                         Media | null;
     is_video:                      boolean;
     link_flair_template_id?:       string;
+    from_where:                    string;
 }
 
 export interface AllAwarding {
@@ -173,11 +174,6 @@ export enum AuthorFlairType {
 export interface Gildings {
     gid_1?: number;
     gid_2?: number;
-}
-
-export enum LinkFlairBackgroundColor {
-    Empty = "",
-    The2B87F3 = "#2b87f3",
 }
 
 export interface LinkFlairRichtext {

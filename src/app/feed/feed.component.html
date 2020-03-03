@@ -1,7 +1,15 @@
-<div *ngFor="let post of posts">
-    <p>{{ post.name }}</p>
-
-    <blockquote class="twitter-tweet" tw-align-center data-lang="en"><p lang="en" dir="ltr">Let us know! 👂<br>What type of content would you like to see from us this year?</p>&mdash; HubSpot (@HubSpot) <a href="https://twitter.com/HubSpot/status/1085634067679322114?ref_src=twsrc%5Etfw">January 16, 2019</a></blockquote>
+<div class="container">
+    <div class="row">
+        <div *ngFor="let post of posts" class="post col-lg">
+            <div [ngClass]="{
+                'header-twitter' : post.from_where === 'twitter',
+                'header-reddit' : post.from_where === 'reddit'
+            }" class="header">                
+                <span>
+                    <fa-icon *ngIf="post.from_where === 'twitter'" class="icon fa-lg" [icon]="faIcons.faTwitter"></fa-icon>
+                    <fa-icon *ngIf="post.from_where === 'reddit'" class="icon fa-lg" [icon]="faIcons.faReddit"></fa-icon>
+                </span><p>{{ post.title && post.title.slice(0, 28) + '...' || post.name }}</p>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
