@@ -60,8 +60,9 @@
     </div>
         
   </div>
-  <app-feed (favoriteList)="onChangeFavorites($event)"></app-feed>
-  <app-login></app-login>
+  <app-feed [favorites]="favorites" (favoriteList)="onChangeFavorites($event)"></app-feed>
+  <app-login ></app-login>
+  <app-saved [posts]="favorites"></app-saved>
 
 
 </body>

@@ -8,6 +8,7 @@ import { FeedComponent } from './feed/feed.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
 import { PostComponent } from './post/post.component';
+import { SavedComponent } from './saved/saved.component';
 
 
 
@@ -16,7 +17,8 @@ import { PostComponent } from './post/post.component';
     AppComponent,
     FeedComponent,
     LoginComponent,
-    PostComponent
+    PostComponent,
+    SavedComponent
   ],
   imports: [
     BrowserModule,

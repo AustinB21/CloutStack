@@ -4,6 +4,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 import { Trend } from '../tweet';
 import { ChildData } from '../reddit';
+import { JsonPipe } from '@angular/common';
+import { containsObject } from '../generalFunctions';
 
 
 @Component({
@@ -13,6 +15,10 @@ import { ChildData } from '../reddit';
 })
 export class PostComponent implements OnInit {
   @Input() post: Trend | ChildData;
+  @Input() faIcon;
+  @Input() faIconOutline;
+  @Input() action: string;
+  @Input() favorites;
   @Output() favorited = new EventEmitter<{isFavorite: boolean, post: Trend | ChildData}>();
 
   faIcons = {
@@ -21,13 +27,32 @@ export class PostComponent implements OnInit {
     faStar,
     faStarOutline
   }
+  faDefault = null;
 
   isFavorite = false;
-  faFavorite = this.faIcons.faStarOutline;
 
   constructor() { }
 
   ngOnInit(): void {
+    if(!this.favorites){
+      this.favorites = [];
+      console.log(this.favorites)
+    }
+    if(containsObject(this.post, this.favorites)){
+      this.faDefault = this.faIcon;
+    } else {
+      this.faDefault = this.faIconOutline;
+    }
+  }
+
+  onEvent(post: Trend | ChildData): void {
+    if(this.action === "favorite"){
+      console.log('hi')
+      this.onFavorite(post);
+    } else if(this.action === "delete") {
+      console.log(`Deleting post: ${post.name}`)
+      this.onDelete(post);
+    }
   }
 
   onFavorite(post: Trend | ChildData): void {
@@ -36,7 +61,14 @@ export class PostComponent implements OnInit {
       isFavorite: this.isFavorite, 
       post
     });
-    this.faFavorite = this.faFavorite === this.faIcons.faStar ? this.faIcons.faStarOutline : this.faIcons.faStar;
+    this.faDefault = this.faDefault === this.faIcon ? this.faIconOutline : this.faIcon;
+  }
+
+  onDelete(post: Trend | ChildData): void {
+    this.favorited.emit({
+      isFavorite: false,
+      post
+    })
   }
 
 }

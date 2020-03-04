@@ -1,7 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Tweets, RedditPosts } from '../mock-posts';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 import { Trend } from '../tweet';
 import { ChildData } from '../reddit';
+import { containsObject } from '../generalFunctions';
 
 @Component({
   selector: 'app-feed',
@@ -10,16 +13,21 @@ import { ChildData } from '../reddit';
 })
 
 export class FeedComponent implements OnInit {
+  @Input() favorites;
   @Output() favoriteList = new EventEmitter<Array<Trend | ChildData>>();
+  faIcons = {
+    faStar,
+    faStarOutline
+  }
+
   posts = [...Tweets, ...RedditPosts];
-  favorites = [];  
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onFavorited(data) {
-    if(this.containsObject(data.post, this.favorites)){
+    if(containsObject(data.post, this.favorites)){
       if(!data.isFavorite) {
         this.favorites = this.favorites.filter(article => article !== data.post)
       }
@@ -29,15 +37,5 @@ export class FeedComponent implements OnInit {
       }
     }
     this.favoriteList.emit(this.favorites);
-  }
-  private containsObject = (obj, list) => {
-    var i;
-    for (i = 0; i < list.length; i++) {
-        if (list[i] === obj) {
-            return true;
-        }
-    }
-
-    return false;
   }
 }

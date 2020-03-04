@@ -1,7 +1,13 @@
 <div class="container">
     <div class="row">
         <div *ngFor="let post of posts" class="col-xl">
-            <app-post [post]="post" (favorited)="onFavorited($event)"></app-post>
+            <app-post 
+                [post]="post" 
+                [faIcon]="faIcons.faStar"
+                [faIconOutline]="faIcons.faStarOutline" 
+                [action]="'favorite'"
+                [favorites]="favorites"
+                (favorited)="onFavorited($event)"></app-post>
         </div>
     </div>
 </div>
