@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { faTwitter, faReddit, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
@@ -13,6 +13,8 @@ import { ChildData } from '../reddit';
 })
 export class PostComponent implements OnInit {
   @Input() post: Trend | ChildData;
+  @Output() favorited = new EventEmitter<{isFavorite: boolean, post: Trend | ChildData}>();
+
   faIcons = {
     faTwitter,
     faReddit,
@@ -20,6 +22,7 @@ export class PostComponent implements OnInit {
     faStarOutline
   }
 
+  isFavorite = false;
   faFavorite = this.faIcons.faStarOutline;
 
   constructor() { }
@@ -27,7 +30,12 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFavorite(): void {
+  onFavorite(post: Trend | ChildData): void {
+    this.isFavorite = !this.isFavorite;
+    this.favorited.emit({ 
+      isFavorite: this.isFavorite, 
+      post
+    });
     this.faFavorite = this.faFavorite === this.faIcons.faStar ? this.faIcons.faStarOutline : this.faIcons.faStar;
   }
 

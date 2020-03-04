@@ -12,4 +12,8 @@ export class AppComponent {
     faSearch
   }
   title = 'CloutStack';
+  favorites = []
+  onChangeFavorites(favorites):void {
+    this.favorites = favorites
+  }
 }
