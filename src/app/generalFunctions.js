@@ -1,4 +1,4 @@
-export const containsObject = (obj, list) => {
+export const containsObject = function (obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i] === obj) {
