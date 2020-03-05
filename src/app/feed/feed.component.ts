@@ -1,10 +1,8 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { Tweets, RedditPosts } from '../mock-posts';
+import { Component, OnInit } from '@angular/core';
+
+import { FrontpageService } from '../frontpage.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
-import { Trend } from '../tweet';
-import { ChildData } from '../reddit';
-import { containsObject } from '../generalFunctions';
 
 @Component({
   selector: 'app-feed',
@@ -13,29 +11,21 @@ import { containsObject } from '../generalFunctions';
 })
 
 export class FeedComponent implements OnInit {
-  @Input() favorites;
-  @Output() favoriteList = new EventEmitter<Array<Trend | ChildData>>();
+  
   faIcons = {
     faStar,
     faStarOutline
   }
 
-  posts = [...Tweets, ...RedditPosts];
-  constructor() { }
+  posts: any[];
+  constructor(private frontpageService: FrontpageService) { }
 
   ngOnInit(): void {
+    this.getPosts();
   }
 
-  onFavorited(data) {
-    if(containsObject(data.post, this.favorites)){
-      if(!data.isFavorite) {
-        this.favorites = this.favorites.filter(article => article !== data.post)
-      }
-    } else {
-      if(data.isFavorite){
-        this.favorites.push(data.post)
-      }
-    }
-    this.favoriteList.emit(this.favorites);
+  getPosts(): void {
+    this.frontpageService.getPosts()
+        .subscribe(posts => this.posts = posts)
   }
 }

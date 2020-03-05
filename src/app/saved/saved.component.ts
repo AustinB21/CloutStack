@@ -1,8 +1,7 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { containsObject } from '../generalFunctions';
-import { Trend } from '../tweet';
-import { ChildData } from '../reddit';
+import { Subscription } from 'rxjs';
+import { FavoriteService } from '../favorite.service';
 
 @Component({
   selector: 'app-saved',
@@ -10,26 +9,23 @@ import { ChildData } from '../reddit';
   styleUrls: ['./saved.component.css']
 })
 export class SavedComponent implements OnInit {
-  @Input() posts;
-  @Output() favoriteList = new EventEmitter<Array<Trend | ChildData>>();
+
+  private subscription: Subscription;
 
   faIcons = {
     faTrash,
     faTimes
   }
 
-  constructor() { }
+  posts = [];
+
+  constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
-  }
-
-  onFavorited(data) {
-    if(containsObject(data.post, this.posts)){
-      if(!data.isFavorite) {
-        this.posts = this.posts.filter(article => article !== data.post)
-      }
-    }
-    this.favoriteList.emit(this.posts);
+    this.subscription = this.favoriteService.observableFavorites.subscribe(item => {
+      this.posts = item;
+    })
+    this.favoriteService.getFavorites();
   }
 
 }

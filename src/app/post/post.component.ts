@@ -1,10 +1,11 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { faTwitter, faReddit, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { faTwitter, faReddit } from '@fortawesome/free-brands-svg-icons';
 import { Trend } from '../tweet';
 import { ChildData } from '../reddit';
-import { JsonPipe } from '@angular/common';
+
+import { FavoriteService } from '../favorite.service';
+import { Subscription } from 'rxjs';
 import { containsObject } from '../generalFunctions';
 
 
@@ -18,57 +19,49 @@ export class PostComponent implements OnInit {
   @Input() faIcon;
   @Input() faIconOutline;
   @Input() action: string;
-  @Input() favorites;
-  @Output() favorited = new EventEmitter<{isFavorite: boolean, post: Trend | ChildData}>();
+  
+  private subscription: Subscription;
 
   faIcons = {
     faTwitter,
-    faReddit,
-    faStar,
-    faStarOutline
+    faReddit
   }
+
   faDefault = null;
+  favorites = [];
 
-  isFavorite = false;
-
-  constructor() { }
+  constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
-    if(!this.favorites){
-      this.favorites = [];
-      console.log(this.favorites)
-    }
-    if(containsObject(this.post, this.favorites)){
-      this.faDefault = this.faIcon;
-    } else {
-      this.faDefault = this.faIconOutline;
-    }
+    this.subscription = this.favoriteService.observableFavorites.subscribe(item => {
+      this.favorites = item;
+      if(containsObject(this.post, item)) {
+        this.faDefault = this.faIcon;
+      } else {
+        this.faDefault = this.faIconOutline;
+      }
+    })
+    this.favoriteService.getFavorites();
   }
 
   onEvent(post: Trend | ChildData): void {
     if(this.action === "favorite"){
-      console.log('hi')
       this.onFavorite(post);
     } else if(this.action === "delete") {
-      console.log(`Deleting post: ${post.name}`)
       this.onDelete(post);
     }
   }
 
   onFavorite(post: Trend | ChildData): void {
-    this.isFavorite = !this.isFavorite;
-    this.favorited.emit({ 
-      isFavorite: this.isFavorite, 
-      post
-    });
-    this.faDefault = this.faDefault === this.faIcon ? this.faIconOutline : this.faIcon;
+    if(containsObject(post, this.favorites)){
+      this.favoriteService.deleteFavorite(post);
+    } else {
+      this.favoriteService.addFavorite(post);
+    }
   }
 
   onDelete(post: Trend | ChildData): void {
-    this.favorited.emit({
-      isFavorite: false,
-      post
-    })
+    this.favoriteService.deleteFavorite(post);
   }
 
 }
