@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Tweets, RedditPosts } from '../mock-posts';
+
+import { FrontpageService } from '../frontpage.service';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-feed',
@@ -8,11 +11,21 @@ import { Tweets, RedditPosts } from '../mock-posts';
 })
 
 export class FeedComponent implements OnInit {
-  posts = [...Tweets, ...RedditPosts];
   
-  constructor() { }
-
-  ngOnInit(): void {
+  faIcons = {
+    faStar,
+    faStarOutline
   }
 
+  posts: any[];
+  constructor(private frontpageService: FrontpageService) { }
+
+  ngOnInit(): void {
+    this.getPosts();
+  }
+
+  getPosts(): void {
+    this.frontpageService.getPosts()
+        .subscribe(posts => this.posts = posts)
+  }
 }

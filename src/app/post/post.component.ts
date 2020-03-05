@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faTwitter, faReddit, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
+
+import { faTwitter, faReddit } from '@fortawesome/free-brands-svg-icons';
 import { Trend } from '../tweet';
 import { ChildData } from '../reddit';
+
+import { FavoriteService } from '../favorite.service';
+import { Subscription } from 'rxjs';
+import { containsObject } from '../generalFunctions';
 
 
 @Component({
@@ -13,22 +16,52 @@ import { ChildData } from '../reddit';
 })
 export class PostComponent implements OnInit {
   @Input() post: Trend | ChildData;
+  @Input() faIcon;
+  @Input() faIconOutline;
+  @Input() action: string;
+  
+  private subscription: Subscription;
+
   faIcons = {
     faTwitter,
-    faReddit,
-    faStar,
-    faStarOutline
+    faReddit
   }
 
-  faFavorite = this.faIcons.faStarOutline;
+  faDefault = null;
+  favorites = [];
 
-  constructor() { }
+  constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
+    this.subscription = this.favoriteService.observableFavorites.subscribe(item => {
+      this.favorites = item;
+      if(containsObject(this.post, item)) {
+        this.faDefault = this.faIcon;
+      } else {
+        this.faDefault = this.faIconOutline;
+      }
+    })
+    this.favoriteService.getFavorites();
   }
 
-  onFavorite(): void {
-    this.faFavorite = this.faFavorite === this.faIcons.faStar ? this.faIcons.faStarOutline : this.faIcons.faStar;
+  onEvent(post: Trend | ChildData): void {
+    if(this.action === "favorite"){
+      this.onFavorite(post);
+    } else if(this.action === "delete") {
+      this.onDelete(post);
+    }
+  }
+
+  onFavorite(post: Trend | ChildData): void {
+    if(containsObject(post, this.favorites)){
+      this.favoriteService.deleteFavorite(post);
+    } else {
+      this.favoriteService.addFavorite(post);
+    }
+  }
+
+  onDelete(post: Trend | ChildData): void {
+    this.favoriteService.deleteFavorite(post);
   }
 
 }
