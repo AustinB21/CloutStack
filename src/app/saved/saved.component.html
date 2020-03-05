@@ -8,5 +8,9 @@
                 [action]="'delete'"
                 ></app-post>
         </div>
+        <div *ngIf="posts.length == 0" class="col-xl no-posts">
+            No posts saved!
+            <br> You can save posts by starring them in the home page.
+        </div>
     </div>
 </div>
