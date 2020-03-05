@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { faCloud, faSearch } from '@fortawesome/free-solid-svg-icons'
+// import { FrontpageService } from './frontpage.service';
+// import { FavoriteService } from './favorite.service';
 
 @Component({
   selector: 'app-root',

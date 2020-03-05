@@ -15,7 +15,7 @@ import { containsObject } from '../generalFunctions';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  @Input() post: Trend | ChildData;
+  @Input() post: any;
   @Input() faIcon;
   @Input() faIconOutline;
   @Input() action: string;
@@ -30,6 +30,8 @@ export class PostComponent implements OnInit {
   faDefault = null;
   favorites = [];
 
+  postTitle: string;
+
   constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class PostComponent implements OnInit {
       }
     })
     this.favoriteService.getFavorites();
+    this.postTitle = this.post.title ? this.post.title.slice(0, 27) + '...' : this.post.name;
   }
 
   onEvent(post: Trend | ChildData): void {
