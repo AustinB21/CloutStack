@@ -5,6 +5,7 @@ import { LoginModel } from '../login-model'
 import { FormControl, FormGroup, Validators, FormBuilder, ReactiveFormsModule, FormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { emailValidator } from '../email-validation.directive' 
 
+declare var jQuery: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,10 +23,11 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
 
-  onSubmit(data) { 
-    this.submitted = true;
-    alert(JSON.stringify(data));
-  }
+  // onSubmit(data) { 
+  //   this.submitted = submit(data)
+  //   // this.submitted = true;
+  //   // alert(JSON.stringify(data));
+  // }
 
   form: FormGroup
 
@@ -50,6 +52,13 @@ export class LoginComponent implements OnInit {
      ]),
      'RememberMe': new FormControl(this.loginModel.remember)
      
+   })
+   var loginButton = document.getElementById("loginButton");
+   loginButton.addEventListener('click', ()=>{
+     this.submitted = true;
+    (function ($) {
+      alert($('form').serialize());
+    })(jQuery);
    })
   }
 
