@@ -1,19 +1,36 @@
 <div class="container login-container">
-        <form>
+        <form (ngSubmit)="onSubmit" [formGroup]="form">
             <h1>Login</h1>
             <div class="form-group input-group">
-                <span class="input-group-addon icon"><fa-icon [icon]="faIcons.faEnvelope"></fa-icon></span><input type="email" class="form-control" name="email" placeholder="Email"
-                [(ngModel)]="loginModel.email">
+                <span class="icon"><fa-icon [icon]="faIcons.faEnvelope"></fa-icon></span><input type="email" class="form-control" id="Email" placeholder="Email"
+                required 
+                [(ngModel)]="loginModel.email" name="email" formControlName="email">
+            </div>
+            <div *ngIf='(email.invalid) && (email.dirty && email.touched)' class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                    Email is required
+                </div>
+                <div *ngIf="email.errors.invalidEmail">
+                    Invalid Email
+                </div>
             </div>
             <div class="form-group input-group">
-                <span class="input-group-addon icon"><fa-icon [icon]="faIcons.faKey"></fa-icon></span><input type="password" class="form-control" name="Password" placeholder="Password"
-                [(ngModel)]="loginModel.password">
+                <span class="icon"><fa-icon [icon]="faIcons.faKey"></fa-icon></span><input type="password" class="form-control" id="Password" placeholder="Password"
+                required
+                [(ngModel)]="loginModel.password" name="password" formControlName="password">
+            </div>
+            <div *ngIf='password.touched && password.invalid' class="alert alert-danger">
+                <div *ngIf="password.errors.required">
+                    Password is required
+                </div>
             </div>
             <div class="form-check input-group remember-box-container">
-                <input class="form-check-input remember-box" type="checkbox" name="RememberMe">Remember Me
+                <input class="form-check-input remember-box" type="checkbox" name="RememberMe" formControlName="RememberMe"
+                [(ngModel)]="loginModel.remember">Remember Me
             </div>
 
-            <button class="btn btn-primary btn-block login-button" (click)="loginPressed(loginModel)">Login</button>
+            <button class="btn btn-primary btn-block login-button" type='submit' (click)="onSubmit(loginModel)"
+            [disabled]="email.invalid || password.invalid">Login</button>
             <div class="link-container">
                 <a href="#">Don't Have Clout? Create an Account</a>
             </div>
