@@ -23,11 +23,11 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
 
-  // onSubmit(data) { 
-  //   this.submitted = submit(data)
-  //   // this.submitted = true;
-  //   // alert(JSON.stringify(data));
-  // }
+  onSubmit(data) { 
+    // this.submitted = submit(data)
+    this.submitted = true;
+    // alert(JSON.stringify(data));
+  }
 
   form: FormGroup
 
