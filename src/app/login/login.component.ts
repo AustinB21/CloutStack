@@ -3,7 +3,7 @@ import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons'
 
 import { LoginModel } from '../login-model'
 import { FormControl, FormGroup, Validators, FormBuilder, ReactiveFormsModule, FormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
-import { emailValidator } from '../email-validation.directive' 
+import { emailValidator } from '../email-validation.directive'
 
 declare var jQuery: any;
 @Component({
