@@ -15,6 +15,7 @@ import { PostComponent } from './post/post.component';
 import { SavedComponent } from './saved/saved.component';
 import { FrontpageService } from './frontpage.service';
 import { FavoriteService } from './favorite.service';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -25,7 +26,8 @@ import { FavoriteService } from './favorite.service';
     LoginComponent,
     EmailValidationDirective,
     PostComponent,
-    SavedComponent
+    SavedComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

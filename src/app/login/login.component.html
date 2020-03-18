@@ -3,14 +3,14 @@
             <h1>Login</h1>
             <div class="form-group input-group">
                 <span class="icon"><fa-icon [icon]="faIcons.faEnvelope"></fa-icon></span><input type="email" class="form-control" id="Email" placeholder="Email"
-                required 
+                required
                 [(ngModel)]="loginModel.email" name="email" formControlName="email">
             </div>
             <div *ngIf='(email.invalid) && (email.dirty && email.touched)' class="alert alert-danger">
                 <div *ngIf="email.errors.required">
                     Email is required
                 </div>
-                <div *ngIf="email.errors.invalidEmail">
+                <div *ngIf="email.errors.invalidEmail && !email.errors.required">
                     Invalid Email
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <button class="btn btn-primary btn-block login-button" type='submit' id="loginButton"
             [disabled]="email.invalid || password.invalid">Login</button>
             <div class="link-container">
-                <a href="#">Don't Have Clout? Create an Account</a>
+                <a [routerLink]="['/signup']" routerLinkActive="router-link-active" >Don't Have Clout? Create an Account</a>
             </div>
         </form>
 </div>
