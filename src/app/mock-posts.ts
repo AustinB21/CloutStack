@@ -1,5 +1,5 @@
-import { Trend } from './tweet';
-import { ChildData, FlairTextColor, SubredditType, AuthorFlairType, WhitelistStatus } from './reddit';
+import { Trend } from './data/tweet';
+import { ChildData, FlairTextColor, SubredditType, AuthorFlairType, WhitelistStatus } from './data/reddit';
 
 export const Tweets: Trend[] = [
     {

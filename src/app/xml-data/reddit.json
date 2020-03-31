@@ -1,0 +1,153 @@
+{
+  "rss": {
+    "$": {
+      "xmlns:media": "http://search.yahoo.com/mrss/",
+      "xmlns:atom": "http://www.w3.org/2005/Atom",
+      "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+      "version": "2.0"
+    },
+    "channel": [
+      {
+        "title": [
+          "top scoring links : news on Reddit"
+        ],
+        "description": [
+          "top scoring links : news on Reddit"
+        ],
+        "pubDate": [
+          "Tue, 24 Mar 2020 01:19:24 +0000"
+        ],
+        "generator": [
+          "FetchRSS"
+        ],
+        "link": [
+          "https://www.reddit.com/r/news/top/"
+        ],
+        "atom:link": [
+          {
+            "$": {
+              "href": "http://fetchrss.com/rss/5e795a068a93f800478b45675e7960088a93f8900b8b4567.xml",
+              "rel": "self",
+              "type": "application/rss+xml"
+            }
+          }
+        ],
+        "image": [
+          {
+            "link": [
+              "https://www.reddit.com/r/news/top/"
+            ],
+            "url": [
+              "\r\nhttps://res.cloudinary.com/dh2eofcns/provider/reddit.png\r\n"
+            ],
+            "title": [
+              "top scoring links : news on Reddit"
+            ]
+          }
+        ],
+        "item": [
+          {
+            "title": [
+              "Canada pulls out of 2020 Tokyo Olympic"
+            ],
+            "link": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnc32n/canada_pulls_out_of_2020_tokyo_olympic/\r\n"
+            ],
+            "description": [
+              "\r\n\r\n&#32; submitted by &#32; <a href=\"https://www.reddit.com/user/G8F8\"> /u/G8F8 </a> <br/> <span><a href=\"https://www.capebretonpost.com/sports/regional-sports/canada-pulls-out-of-2020-tokyo-olympic-games-428068/\">[link]</a></span> &#32; <span><a href=\"https://www.reddit.com/r/news/comments/fnc32n/canada_pulls_out_of_2020_tokyo_olympic/\">[comments]</a></span> <br/><br/><span style=\"font-size:12px; color: gray;\">(Feed generated with <a href=\"http://fetchrss.com\" target=\"_blank\">FetchRSS</a>)</span>\r\n\r\n"
+            ],
+            "dc:creator": [
+              "/u/G8F8"
+            ],
+            "pubDate": [
+              "Mon, 23 Mar 2020 02:11:19 +0000"
+            ],
+            "guid": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnc32n/canada_pulls_out_of_2020_tokyo_olympic/\r\n"
+            ]
+          },
+          {
+            "title": [
+              "\r\nTokyo 2020: Olympics to be postponed until 2021, says IOC member\r\n"
+            ],
+            "link": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnos93/tokyo_2020_olympics_to_be_postponed_until_2021/\r\n"
+            ],
+            "description": [
+              "\r\n\r\n&#32; submitted by &#32; <a href=\"https://www.reddit.com/user/Maxwyfe\"> /u/Maxwyfe </a> <br/> <span><a href=\"https://www.bbc.com/sport/athletics/52002474\">[link]</a></span> &#32; <span><a href=\"https://www.reddit.com/r/news/comments/fnos93/tokyo_2020_olympics_to_be_postponed_until_2021/\">[comments]</a></span> <br/><br/><span style=\"font-size:12px; color: gray;\">(Feed generated with <a href=\"http://fetchrss.com\" target=\"_blank\">FetchRSS</a>)</span>\r\n\r\n"
+            ],
+            "dc:creator": [
+              "/u/Maxwyfe"
+            ],
+            "pubDate": [
+              "Mon, 23 Mar 2020 18:12:38 +0000"
+            ],
+            "guid": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnos93/tokyo_2020_olympics_to_be_postponed_until_2021/\r\n"
+            ]
+          },
+          {
+            "title": [
+              "\r\nPGE Will Plead Guilty to Manslaughter in Camp Fire\r\n"
+            ],
+            "link": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnjj4a/pge_will_plead_guilty_to_manslaughter_in_camp_fire/\r\n"
+            ],
+            "description": [
+              "\r\n\r\n&#32; submitted by &#32; <a href=\"https://www.reddit.com/user/hildebrand_rarity\"> /u/hildebrand_rarity </a> <br/> <span><a href=\"https://www.nytimes.com/2020/03/23/business/energy-environment/pge-camp-fire-manslaughter.html\">[link]</a></span> &#32; <span><a href=\"https://www.reddit.com/r/news/comments/fnjj4a/pge_will_plead_guilty_to_manslaughter_in_camp_fire/\">[comments]</a></span> <br/><br/><span style=\"font-size:12px; color: gray;\">(Feed generated with <a href=\"http://fetchrss.com\" target=\"_blank\">FetchRSS</a>)</span>\r\n\r\n"
+            ],
+            "dc:creator": [
+              "/u/hildebrand_rarity"
+            ],
+            "pubDate": [
+              "Mon, 23 Mar 2020 12:58:20 +0000"
+            ],
+            "guid": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnjj4a/pge_will_plead_guilty_to_manslaughter_in_camp_fire/\r\n"
+            ]
+          },
+          {
+            "title": [
+              "\r\nCrowds packed California beaches despite shelter in place order\r\n"
+            ],
+            "link": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnfwr7/crowds_packed_california_beaches_despite_shelter/\r\n"
+            ],
+            "description": [
+              "\r\n\r\n&#32; submitted by &#32; <a href=\"https://www.reddit.com/user/diffcalculus\"> /u/diffcalculus </a> <br/> <span><a href=\"https://www.cnn.com/2020/03/23/us/california-stay-at-home-beach-goers/index.html\">[link]</a></span> &#32; <span><a href=\"https://www.reddit.com/r/news/comments/fnfwr7/crowds_packed_california_beaches_despite_shelter/\">[comments]</a></span> <br/><br/><span style=\"font-size:12px; color: gray;\">(Feed generated with <a href=\"http://fetchrss.com\" target=\"_blank\">FetchRSS</a>)</span>\r\n\r\n"
+            ],
+            "dc:creator": [
+              "/u/diffcalculus"
+            ],
+            "pubDate": [
+              "Mon, 23 Mar 2020 07:27:31 +0000"
+            ],
+            "guid": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnfwr7/crowds_packed_california_beaches_despite_shelter/\r\n"
+            ]
+          },
+          {
+            "title": [
+              "\r\n50,000 N95 masks delivered to UW researcher’s home thanks to Elon Musk, Tesla\r\n"
+            ],
+            "link": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnkn1u/50000_n95_masks_delivered_to_uw_researchers_home/\r\n"
+            ],
+            "description": [
+              "\r\n\r\n&#32; submitted by &#32; <a href=\"https://www.reddit.com/user/RandomEMT\"> /u/RandomEMT </a> <br/> <span><a href=\"https://www.seattletimes.com/seattle-news/health/truckload-of-50000-n95-masks-headed-to-uw-researchers-home-thanks-to-elon-musk-tesla/\">[link]</a></span> &#32; <span><a href=\"https://www.reddit.com/r/news/comments/fnkn1u/50000_n95_masks_delivered_to_uw_researchers_home/\">[comments]</a></span> <br/><br/><span style=\"font-size:12px; color: gray;\">(Feed generated with <a href=\"http://fetchrss.com\" target=\"_blank\">FetchRSS</a>)</span>\r\n\r\n"
+            ],
+            "dc:creator": [
+              "/u/RandomEMT"
+            ],
+            "pubDate": [
+              "Mon, 23 Mar 2020 14:14:41 +0000"
+            ],
+            "guid": [
+              "\r\nhttps://www.reddit.com/r/news/comments/fnkn1u/50000_n95_masks_delivered_to_uw_researchers_home/\r\n"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

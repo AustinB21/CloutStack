@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { faTwitter, faReddit } from '@fortawesome/free-brands-svg-icons';
-import { Trend } from '../tweet';
-import { ChildData } from '../reddit';
+import { Trend } from '../data/tweet';
+import { ChildData } from '../data/reddit';
 
 import { FavoriteService } from '../favorite.service';
 import { Subscription } from 'rxjs';
