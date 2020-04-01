@@ -1,36 +1,31 @@
 import { Injectable } from '@angular/core';
-
-import { BehaviorSubject } from 'rxjs';
-import { containsObject } from './generalFunctions';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
-  favorites= [];
-  observableFavorites: BehaviorSubject<any[]>;
-  
-  constructor() {
-    this.observableFavorites = new BehaviorSubject<any[]>(this.favorites)
-  }
+  private PHP_API_URL = "http://localhost/Cloutstack/api/favorites";
 
-  eventChange() {
-    this.observableFavorites.next(this.favorites);
-  }
+  constructor(private http: HttpClient) { }
 
   getFavorites() {
-    this.eventChange();
+    return this.http.get<any>(`${this.PHP_API_URL}/read.php`)
   }
 
-  addFavorite(post: any) {
-    this.favorites.push(post)
-    this.eventChange();
+  addFavorite(post: any){
+    return this.http.post<any>(`${this.PHP_API_URL}/insert.php`, post, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
   }
 
   deleteFavorite(post: any) {
-    if(containsObject(post, this.favorites)) {
-      this.favorites = this.favorites.filter(item => item !== post)
-      this.eventChange();
-    }
+    return this.http.post<any>(`${this.PHP_API_URL}/delete.php`, post, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
   }
 }

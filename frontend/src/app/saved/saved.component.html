@@ -6,6 +6,7 @@
                 [faIcon]="faIcons.faTimes"
                 [faIconOutline]="faIcons.faTimes"
                 [action]="'delete'"
+                (getFavoritesChange)="updateFavorites($event)"
                 ></app-post>
         </div>
         <div *ngIf="posts.length == 0" class="col-xl no-posts">

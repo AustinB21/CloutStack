@@ -1,11 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTwitter, faReddit } from '@fortawesome/free-brands-svg-icons';
-import { Trend } from '../data/tweet';
-import { ChildData } from '../data/reddit';
 
 import { FavoriteService } from '../favorite.service';
-import { Subscription } from 'rxjs';
 import { containsObject } from '../generalFunctions';
 
 
@@ -19,35 +15,30 @@ export class PostComponent implements OnInit {
   @Input() faIcon;
   @Input() faIconOutline;
   @Input() action: string;
+  @Output() getFavoritesChange = new EventEmitter<any>()
   
-  private subscription: Subscription;
-
   faIcons = {
     faTwitter,
     faReddit
   }
 
-  faDefault = null;
+  faDefault = this.faIconOutline;
   favorites = [];
 
   postTitle: string;
 
   constructor(private favoriteService: FavoriteService) { }
 
+  //Load user's favorites
   ngOnInit(): void {
-    this.subscription = this.favoriteService.observableFavorites.subscribe(item => {
-      this.favorites = item;
-      if(containsObject(this.post, item)) {
-        this.faDefault = this.faIcon;
-      } else {
-        this.faDefault = this.faIconOutline;
-      }
+    this.favoriteService.getFavorites().subscribe(favs => {
+      this.updateFavorites(favs)
     })
-    this.favoriteService.getFavorites();
-    this.postTitle = this.post.title ? this.post.title.slice(0, 27) + '...' : this.post.name;
+    this.postTitle = this.post.title
   }
 
-  onEvent(post: Trend | ChildData): void {
+  //controller method that delegates which action to perform on post
+  onEvent(post): void {
     if(this.action === "favorite"){
       this.onFavorite(post);
     } else if(this.action === "delete") {
@@ -55,16 +46,36 @@ export class PostComponent implements OnInit {
     }
   }
 
-  onFavorite(post: Trend | ChildData): void {
-    if(containsObject(post, this.favorites)){
-      this.favoriteService.deleteFavorite(post);
+  onFavorite(post): void {
+    if(this.isFavorited({"username": "default", ...post})){
+      this.favoriteService.deleteFavorite(post).subscribe(favs => {
+        this.updateFavorites(favs)
+      })
     } else {
-      this.favoriteService.addFavorite(post);
+      this.favoriteService.addFavorite(post).subscribe(favs => {
+        this.updateFavorites(favs)
+      })
     }
   }
 
-  onDelete(post: Trend | ChildData): void {
-    this.favoriteService.deleteFavorite(post);
+  onDelete(post): void {
+    this.favoriteService.deleteFavorite(post).subscribe(favs => {
+      this.updateFavorites(favs)
+      this.getFavoritesChange.emit(this.favorites)
+    })
+  }
+
+  isFavorited(post): boolean {
+    return containsObject(post, this.favorites)
+  }
+
+  updateFavorites(favs): void {
+    this.favorites = favs
+    if(this.isFavorited({"username": "default", ...this.post})){
+      this.faDefault = this.faIcon
+    } else {
+      this.faDefault = this.faIconOutline
+    }
   }
 
 }
