@@ -9,12 +9,16 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 /******************************/
 // connecting to DB on CS Server
 
-$host = 'cs4750.cs.virginia.edu';           // hostname
+// $host = 'cs4750.cs.virginia.edu';           // hostname
 $dbname = 'sj4zm_cloutstack';     // database name
 
 // database credentials
 $username = 'sj4zm';
 $password = '1Srideepthi2@';
+
+// connecting to localhost DB
+
+$host = 'localhost:3306';           // hostname
 
 /******************************/
 
