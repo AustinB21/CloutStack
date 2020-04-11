@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { FrontpageService } from '../frontpage.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
+
+import { FrontpageService } from '../frontpage.service';
 
 @Component({
   selector: 'app-feed',
@@ -21,11 +21,14 @@ export class FeedComponent implements OnInit {
   constructor(private frontpageService: FrontpageService) { }
 
   ngOnInit(): void {
-    this.getPosts();
+      this.getPosts();
   }
 
   getPosts(): void {
     this.frontpageService.getPosts()
-        .subscribe(posts => this.posts = posts)
+        .subscribe(posts => {
+          this.posts = posts
+          console.log(posts)
+        })
   }
 }

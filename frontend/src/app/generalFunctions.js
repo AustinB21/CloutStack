@@ -1,10 +1,9 @@
 export const containsObject = function (obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        if (list[i] === obj) {
+        if (JSON.stringify(list[i]) === JSON.stringify(obj)) {
             return true;
         }
     }
-
     return false;
 }
