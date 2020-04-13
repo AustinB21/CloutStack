@@ -1,5 +1,5 @@
 <?php
-    require('connect.php');
+    require('../connect.php');
     $data = file_get_contents("php://input");
     $data = json_decode($data);
     $query = "SELECT * FROM login WHERE email=:email";
