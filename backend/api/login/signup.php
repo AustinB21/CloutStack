@@ -23,7 +23,8 @@
         $insertStatement->closeCursor();
         $response = json_encode(array(
             'status' => 200,
-            'message' => 'Successfully signed up.'
+            'message' => 'Successfully signed up.',
+            'body' => $data->email
         ));
         echo $response;
     }

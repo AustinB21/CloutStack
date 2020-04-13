@@ -37,7 +37,14 @@ export class SignupComponent implements OnInit {
       headers: new HttpHeaders({
         'Content-Type': 'application/text'
       })
-    }).subscribe(result => console.log(result))
+    }).subscribe(result => {
+      if(result.status == 200){
+        localStorage.setItem('username', result.body)
+        console.log(localStorage.getItem('username'))
+      }
+      localStorage.setItem('message', result.message)
+      console.log(localStorage.getItem('message'))
+    })
 
   }
 
