@@ -1,5 +1,5 @@
 <?php
-    require('connect.php');
+    require('../connect.php');
     $query = "SELECT * FROM favorite";
     $statement = $db->prepare($query);
     $statement->execute();
