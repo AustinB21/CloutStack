@@ -12,13 +12,21 @@
     $pwd = htmlspecialchars($data->password);
     $hash_pwd = password_hash($pwd, PASSWORD_BCRYPT);
 
-    if (!is_null($results))
+    $response = json_encode(array(
+        'status' => 403,
+        'message' => 'Email already in use.'
+    ));
+    if ($results !== false)
     {
         if (password_verify($hash_pwd, $results['password']))
         {
-            echo $results['email'];
+            $response = json_encode(array(
+                'status' => 200,
+                'message' => 'Successfully signed up.'
+            ));
+            echo $response;
         }
-        else {echo "Could not authenticate";}
+        else {echo $response;}
     }
-    else {echo "Could not authenticate";}
+    else {echo $response;}
 ?>

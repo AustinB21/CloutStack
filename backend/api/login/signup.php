@@ -8,8 +8,7 @@
     $statement->execute();
     $results = $statement->fetch();
     $statement->closeCursor();
-
-    if (is_null($results))
+    if ($results == false)
     {
         $insert = "INSERT INTO login(email, password) VALUES (:email, :password)";
         $insertStatement = $db->prepare($insert);
@@ -20,9 +19,19 @@
         $insertStatement->bindValue(':email', $data->email);
         $insertStatement->bindValue(':password', $hash_pwd);
 
-        $statement->execute();
-        $statement->closeCursor();
-        echo "Signup Successful";
+        $insertStatement->execute();
+        $insertStatement->closeCursor();
+        $response = json_encode(array(
+            'status' => 200,
+            'message' => 'Successfully signed up.'
+        ));
+        echo $response;
     }
-    else {echo "Email already in use";}
+    else {
+        $response = json_encode(array(
+            'status' => 403,
+            'message' => 'Email already in use.'
+        ));
+        echo $response;
+    }
 ?>

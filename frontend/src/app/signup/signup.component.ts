@@ -18,8 +18,7 @@ export class SignupComponent implements OnInit {
     faKey
   }
 
-  private PHP_API_URL = "http://localhost/Cloutstack/login";
-
+  private PHP_API_URL = "http://localhost/Cloutstack/api/login";
 
   signupModel = new SignupModel('', '');
 
@@ -36,9 +35,9 @@ export class SignupComponent implements OnInit {
     console.log(this.form.value);
     this.http.post<any>(`${this.PHP_API_URL}/signup.php`, this.form.value, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/text'
       })
-    })
+    }).subscribe(result => console.log(result))
 
   }
 
