@@ -5,6 +5,7 @@ import {SignupModel} from '../signup-model'
 import { FormControl, FormGroup, Validators, FormBuilder, ReactiveFormsModule, FormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { emailValidator } from '../email-validation.directive';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router'
 
 declare var jQuery: any;
 @Component({
@@ -28,7 +29,7 @@ export class SignupComponent implements OnInit {
     this.submitted = true;
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
   signUpPressed(){
     // Eventually Send data to backend
@@ -41,9 +42,14 @@ export class SignupComponent implements OnInit {
       if(result.status == 200){
         localStorage.setItem('username', result.body)
         console.log(localStorage.getItem('username'))
+        this.router.navigate(['/feed'])
+        
+      } else {
+        alert("Email already in use");
       }
       localStorage.setItem('message', result.message)
       console.log(localStorage.getItem('message'))
+      //this.form.controls['email'].mark
     })
 
   }
@@ -66,7 +72,7 @@ export class SignupComponent implements OnInit {
      this.submitted = true;
      this.signUpPressed();
     (function ($) {
-      alert($('form').serialize());
+      //alert($('form').serialize());
     })(jQuery);
    })
   }

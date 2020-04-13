@@ -26,6 +26,8 @@
             'message' => 'Successfully signed up.',
             'body' => $data->email
         ));
+        require('createSession.php');
+        create_session($data->email);
         echo $response;
     }
     else {

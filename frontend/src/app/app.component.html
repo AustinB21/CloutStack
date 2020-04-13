@@ -36,8 +36,11 @@
           <li class="nav-item"> 
             <a class="nav-link" routerLink="feed">Home</a>
           </li>
-          <li class="nav-item"> 
+          <li  *ngIf='!loggedIn()' class="nav-item"> 
             <a class="nav-link" routerLink="login">Login</a>
+          </li>
+          <li *ngIf='loggedIn()' class="nav-item">
+            <a (click)="this.logout()" class="nav-link" routerLink='feed'> Logout </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="saved">Saved</a>

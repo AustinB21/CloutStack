@@ -47,12 +47,17 @@ export class PostComponent implements OnInit {
   }
 
   onFavorite(post): void {
-    if(this.isFavorited({"username": "default", ...post})){
-      this.favoriteService.deleteFavorite(post).subscribe(favs => {
+    let username = 'default';
+    if (localStorage.getItem('username') != 'default'){
+      username = localStorage.getItem('username');
+    }
+    console.log(username);
+    if(this.isFavorited({"username": username, ...post})){
+      this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
         this.updateFavorites(favs)
       })
     } else {
-      this.favoriteService.addFavorite(post).subscribe(favs => {
+      this.favoriteService.addFavorite({"username": username, ...post}).subscribe(favs => {
         this.updateFavorites(favs)
       })
     }
