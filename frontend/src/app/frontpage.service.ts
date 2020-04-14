@@ -12,7 +12,7 @@ export class FrontpageService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any[]> {
-    return this.http.get<any>(`${this.PHP_RSS_SERVER}/read.php?q=Reddit`)
+    return this.http.get<any>(`${this.PHP_RSS_SERVER}/read.php`)
   }
 }
 

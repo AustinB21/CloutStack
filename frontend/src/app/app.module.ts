@@ -19,6 +19,7 @@ import { SavedComponent } from './saved/saved.component';
 import { FrontpageService } from './frontpage.service';
 import { FavoriteService } from './favorite.service';
 import { SignupComponent } from './signup/signup.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -40,7 +41,8 @@ import { SignupComponent } from './signup/signup.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [FrontpageService, FavoriteService],
   bootstrap: [AppComponent]
