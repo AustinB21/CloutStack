@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() { 
     // this.submitted = submit(data)
-
   }
 
   form: FormGroup
@@ -49,17 +48,16 @@ export class LoginComponent implements OnInit {
         'Content-Type': 'application/text'
       })
     }).subscribe(result => {
+      localStorage.setItem('message', result.message)
+      console.log(localStorage.getItem('message'))
       if(result.status == 200){
         localStorage.setItem('username', result.body)
         console.log(localStorage.getItem('username'))
         this.router.navigate(['/feed'])
         
       } else {
-        alert("Incorrect Email or Password");
+        alert(localStorage.getItem('message'));
       }
-      localStorage.setItem('message', result.message)
-      console.log(localStorage.getItem('message'))
-      //this.form.controls['email'].mark
     })
   }
 
@@ -82,6 +80,10 @@ export class LoginComponent implements OnInit {
       //alert($('form').serialize());
     })(jQuery);
    })
+   if(localStorage.getItem('login_error')){
+     alert(localStorage.getItem('login_error'))
+     localStorage.removeItem('login_error')
+   }
   }
 
   get email() {return this.form.get('email');}

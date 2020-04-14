@@ -13,5 +13,6 @@
         ":from_where" => $data->from_where,
     ));
     $statement->closeCursor();
-    include("read.php");
+    $logged_in = $data->username;
+    include("specialread.php");
 ?>

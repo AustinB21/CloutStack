@@ -39,16 +39,16 @@ export class SignupComponent implements OnInit {
         'Content-Type': 'application/text'
       })
     }).subscribe(result => {
+      localStorage.setItem('message', result.message)
+      console.log(localStorage.getItem('message'))
       if(result.status == 200){
         localStorage.setItem('username', result.body)
         console.log(localStorage.getItem('username'))
         this.router.navigate(['/feed'])
         
       } else {
-        alert("Email already in use");
+        alert(localStorage.getItem('message'));
       }
-      localStorage.setItem('message', result.message)
-      console.log(localStorage.getItem('message'))
       //this.form.controls['email'].mark
     })
 

@@ -3,6 +3,7 @@ import { faTwitter, faReddit } from '@fortawesome/free-brands-svg-icons';
 
 import { FavoriteService } from '../favorite.service';
 import { containsObject } from '../generalFunctions';
+import { Router } from '@angular/router'
 
 
 @Component({
@@ -27,13 +28,17 @@ export class PostComponent implements OnInit {
 
   postTitle: string;
 
-  constructor(private favoriteService: FavoriteService) { }
+  constructor(private favoriteService: FavoriteService, private router: Router) { }
 
   //Load user's favorites
   ngOnInit(): void {
-    this.favoriteService.getFavorites().subscribe(favs => {
-      this.updateFavorites(favs)
-    })
+    if(localStorage.getItem('username') != 'default') {
+      this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
+        this.updateFavorites(favs)
+      })
+    } else {
+      this.updateFavorites([])
+    }
     this.postTitle = this.post.title
   }
 
@@ -50,10 +55,13 @@ export class PostComponent implements OnInit {
     let username = 'default';
     if (localStorage.getItem('username') != 'default'){
       username = localStorage.getItem('username');
+    } else {
+      localStorage.setItem('login_error', 'You have to login to save articles')
+      this.router.navigate(['/login'])
     }
-    console.log(username);
     if(this.isFavorited({"username": username, ...post})){
       this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
+        console.log(username);
         this.updateFavorites(favs)
       })
     } else {
@@ -75,8 +83,13 @@ export class PostComponent implements OnInit {
   }
 
   updateFavorites(favs): void {
+    console.log(favs)
+    let username = 'default'
+    if (localStorage.getItem('username') != 'default'){
+      username = localStorage.getItem('username')
+    }
     this.favorites = favs
-    if(this.isFavorited({"username": "default", ...this.post})){
+    if(this.isFavorited({"username": username, ...this.post})){
       this.faDefault = this.faIcon
     } else {
       this.faDefault = this.faIconOutline

@@ -20,9 +20,13 @@ export class SavedComponent implements OnInit {
   constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
-    this.favoriteService.getFavorites().subscribe(favs => {
-      this.posts = favs
-    });
+    if(localStorage.getItem('username') != 'default'){
+      this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
+        this.posts = favs
+      });
+    } else {
+      this.posts = []
+    }
   }
 
   // Method called by the child component, post, when post is deleted
