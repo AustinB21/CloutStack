@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { faTwitter, faReddit } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faReddit, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { FavoriteService } from '../favorite.service';
 import { containsObject } from '../generalFunctions';
@@ -20,7 +20,8 @@ export class PostComponent implements OnInit {
   
   faIcons = {
     faTwitter,
-    faReddit
+    faReddit,
+    faGoogle
   }
 
   faDefault = this.faIconOutline;

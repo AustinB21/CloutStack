@@ -1,11 +1,13 @@
 <div class="post">
     <div [ngClass]="{
         'header-twitter' : post.from_where === 'twitter',
-        'header-reddit' : post.from_where === 'Reddit'
+        'header-reddit' : post.from_where === 'Reddit',
+        'header-google' : post.from_where === 'Google'
     }" class="header">                
         <span>
             <fa-icon *ngIf="post.from_where === 'twitter'" class="icon fa-lg" [icon]="faIcons.faTwitter"></fa-icon>
             <fa-icon *ngIf="post.from_where === 'Reddit'" class="icon fa-lg" [icon]="faIcons.faReddit"></fa-icon>
+            <fa-icon *ngIf="post.from_where === 'Google'" class="icon fa-lg" [icon]="faIcons.faGoogle"></fa-icon>
         </span><a [href]="post.link" target="_blank">{{ postTitle }}</a>
         <span><fa-icon class="icon clickable fa-lg" [icon]="faDefault" (click)="onEvent(post)"></fa-icon></span>
     </div>
