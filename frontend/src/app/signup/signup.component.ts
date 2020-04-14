@@ -4,6 +4,8 @@ import {SignupModel} from '../signup-model'
 
 import { FormControl, FormGroup, Validators, FormBuilder, ReactiveFormsModule, FormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { emailValidator } from '../email-validation.directive';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router'
 
 declare var jQuery: any;
 @Component({
@@ -17,6 +19,8 @@ export class SignupComponent implements OnInit {
     faKey
   }
 
+  private PHP_API_URL = "http://localhost/Cloutstack/api/login";
+
   signupModel = new SignupModel('', '');
 
   submitted = false;
@@ -25,10 +29,29 @@ export class SignupComponent implements OnInit {
     this.submitted = true;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
-  signUpPressed(data){
+  signUpPressed(){
     // Eventually Send data to backend
+    console.log(this.form.value);
+    this.http.post<any>(`${this.PHP_API_URL}/signup.php`, this.form.value, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/text'
+      })
+    }).subscribe(result => {
+      localStorage.setItem('message', result.message)
+      console.log(localStorage.getItem('message'))
+      if(result.status == 200){
+        localStorage.setItem('username', result.body)
+        console.log(localStorage.getItem('username'))
+        this.router.navigate(['/feed'])
+        
+      } else {
+        alert(localStorage.getItem('message'));
+      }
+      //this.form.controls['email'].mark
+    })
+
   }
 
 
@@ -47,8 +70,9 @@ export class SignupComponent implements OnInit {
     var signupButton = document.getElementById("signupButton");
    signupButton.addEventListener('click', ()=>{
      this.submitted = true;
+     this.signUpPressed();
     (function ($) {
-      alert($('form').serialize());
+      //alert($('form').serialize());
     })(jQuery);
    })
   }

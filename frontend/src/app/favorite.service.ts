@@ -9,8 +9,12 @@ export class FavoriteService {
 
   constructor(private http: HttpClient) { }
 
-  getFavorites() {
-    return this.http.get<any>(`${this.PHP_API_URL}/read.php`)
+  getFavorites(username: any) {
+    return this.http.post<any>(`${this.PHP_API_URL}/read.php`, username, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
   }
 
   addFavorite(post: any){
