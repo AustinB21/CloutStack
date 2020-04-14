@@ -47,3 +47,8 @@ a {
 a:hover {
     color: #424242;
 }
+
+.filter-white {
+    filter: invert(100%) sepia(96%) saturate(0%) hue-rotate(82deg) brightness(106%) contrast(103%);
+    margin-right: 10px;
+}
