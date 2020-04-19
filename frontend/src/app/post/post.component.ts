@@ -5,7 +5,8 @@ import { FavoriteService } from '../favorite.service';
 import { containsObject } from '../generalFunctions';
 import { Router } from '@angular/router'
 
-
+declare const load: any;
+// TODO: fix image loading issue when switching tabs
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -28,11 +29,18 @@ export class PostComponent implements OnInit {
   favorites = [];
 
   postTitle: string;
+  postImage: any;
+  postId: string;
 
   constructor(private favoriteService: FavoriteService, private router: Router) { }
 
   //Load user's favorites
   ngOnInit(): void {
+    this.postId = this.post.title.replace(/[^\w]*/g, "")
+    if(this.post.from_where !== "Reddit"){
+      load(this.post.link, this.postId)
+    }
+    // console.log(this.postImage)
     if(localStorage.getItem('username') != 'default') {
       this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
         this.updateFavorites(favs)
@@ -41,6 +49,7 @@ export class PostComponent implements OnInit {
       this.updateFavorites([])
     }
     this.postTitle = this.post.title
+    
   }
 
   //controller method that delegates which action to perform on post
@@ -62,7 +71,7 @@ export class PostComponent implements OnInit {
     }
     if(this.isFavorited({"username": username, ...post})){
       this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
-        console.log(username);
+        // console.log(username);
         this.updateFavorites(favs)
       })
     } else {
@@ -84,7 +93,7 @@ export class PostComponent implements OnInit {
   }
 
   updateFavorites(favs): void {
-    console.log(favs)
+    // console.log(favs)
     let username = 'default'
     if (localStorage.getItem('username') != 'default'){
       username = localStorage.getItem('username')
