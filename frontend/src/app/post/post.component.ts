@@ -37,10 +37,6 @@ export class PostComponent implements OnInit {
   //Load user's favorites
   ngOnInit(): void {
     this.postId = this.post.title.replace(/[^\w]*/g, "")
-    if(this.post.from_where !== "Reddit"){
-      load(this.post.link, this.postId)
-    }
-    // console.log(this.postImage)
     if(localStorage.getItem('username') != 'default') {
       this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
         this.updateFavorites(favs)
@@ -50,6 +46,19 @@ export class PostComponent implements OnInit {
     }
     this.postTitle = this.post.title
     
+  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    if(this.post.from_where !== "Reddit"){
+      load(this.post.link, this.postId)
+    } else {
+      console.log(this.post.description)
+      let matches = this.post.description.matchAll(/href=(".*?")/gi)
+      matches = Array.from(matches)
+      console.log(matches[1][1].substring(1, matches[1][1].length-1))
+      load(matches[1][1].substring(1, matches[1][1].length-1), this.postId)
+    }
   }
 
   //controller method that delegates which action to perform on post

@@ -1,3 +1,7 @@
 .no-posts {
     margin: 30px;
 }
+
+.container {
+    max-width: 100%;
+}

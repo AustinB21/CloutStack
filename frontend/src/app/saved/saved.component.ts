@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 import { FavoriteService } from '../favorite.service';
 
@@ -16,10 +17,21 @@ export class SavedComponent implements OnInit {
   }
 
   posts = [];
+  column = "col-4"
 
-  constructor(private favoriteService: FavoriteService) { }
+  constructor(private favoriteService: FavoriteService, public breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
+    this.breakpointObserver
+    .observe(['(max-width: 1000px)'])
+    .subscribe((state: BreakpointState) => {
+      if(state.matches) {
+        this.column = "col-12"
+        console.log('change')
+      } else {
+        this.column = "col-4"
+      }
+    })
     if(localStorage.getItem('username') != 'default'){
       this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
         this.posts = favs

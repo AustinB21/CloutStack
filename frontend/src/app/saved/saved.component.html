@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div *ngFor="let post of posts" class="col-xl">
+        <div *ngFor="let post of posts" [class]="column">
             <app-post 
                 [post]="post"
                 [faIcon]="faIcons.faTimes"
