@@ -53,10 +53,8 @@ export class PostComponent implements OnInit {
     if(this.post.from_where !== "Reddit"){
       load(this.post.link, this.postId)
     } else {
-      console.log(this.post.description)
       let matches = this.post.description.matchAll(/href=(".*?")/gi)
       matches = Array.from(matches)
-      console.log(matches[1][1].substring(1, matches[1][1].length-1))
       load(matches[1][1].substring(1, matches[1][1].length-1), this.postId)
     }
   }

@@ -27,7 +27,6 @@ export class SavedComponent implements OnInit {
     .subscribe((state: BreakpointState) => {
       if(state.matches) {
         this.column = "col-12"
-        console.log('change')
       } else {
         this.column = "col-4"
       }
