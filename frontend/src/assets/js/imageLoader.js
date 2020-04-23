@@ -32,5 +32,13 @@ function load( url, title ) {
         } else {
             $(identifier).attr('src', "https://ichef.bbci.co.uk/news/976/cpsprodpb/10434/production/_90121666_agreementcartoon.jpg");
         }
+        checkForError(title)
     });
+}
+
+function checkForError(identifier) {
+    var myImage = document.getElementById(identifier)
+    myImage.onerror = function () {
+        myImage.src = "https://ichef.bbci.co.uk/news/976/cpsprodpb/10434/production/_90121666_agreementcartoon.jpg";
+    }
 }
