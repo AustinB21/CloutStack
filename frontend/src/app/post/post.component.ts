@@ -5,7 +5,8 @@ import { FavoriteService } from '../favorite.service';
 import { containsObject } from '../generalFunctions';
 import { Router } from '@angular/router'
 
-
+declare const load: any;
+// TODO: fix image loading issue when switching tabs
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -28,11 +29,14 @@ export class PostComponent implements OnInit {
   favorites = [];
 
   postTitle: string;
+  postImage: any;
+  postId: string;
 
   constructor(private favoriteService: FavoriteService, private router: Router) { }
 
   //Load user's favorites
   ngOnInit(): void {
+    this.postId = this.post.title.replace(/[^\w]*/g, "")
     if(localStorage.getItem('username') != 'default') {
       this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
         this.updateFavorites(favs)
@@ -41,6 +45,18 @@ export class PostComponent implements OnInit {
       this.updateFavorites([])
     }
     this.postTitle = this.post.title
+    
+  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    if(this.post.from_where !== "Reddit"){
+      load(this.post.link, this.postId)
+    } else {
+      let matches = this.post.description.matchAll(/href="(.*?)"/gi)
+      matches = Array.from(matches)
+      load(matches[1][1], this.postId)
+    }
   }
 
   //controller method that delegates which action to perform on post
@@ -56,19 +72,19 @@ export class PostComponent implements OnInit {
     let username = 'default';
     if (localStorage.getItem('username') != 'default'){
       username = localStorage.getItem('username');
+      if(this.isFavorited({"username": username, ...post})){
+        this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
+          // console.log(username);
+          this.updateFavorites(favs)
+        })
+      } else {
+        this.favoriteService.addFavorite({"username": username, ...post}).subscribe(favs => {
+          this.updateFavorites(favs)
+        })
+      }
     } else {
       localStorage.setItem('login_error', 'You have to login to save articles')
       this.router.navigate(['/login'])
-    }
-    if(this.isFavorited({"username": username, ...post})){
-      this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
-        console.log(username);
-        this.updateFavorites(favs)
-      })
-    } else {
-      this.favoriteService.addFavorite({"username": username, ...post}).subscribe(favs => {
-        this.updateFavorites(favs)
-      })
     }
   }
 
@@ -84,7 +100,7 @@ export class PostComponent implements OnInit {
   }
 
   updateFavorites(favs): void {
-    console.log(favs)
+    // console.log(favs)
     let username = 'default'
     if (localStorage.getItem('username') != 'default'){
       username = localStorage.getItem('username')

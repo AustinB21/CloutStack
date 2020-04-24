@@ -49,10 +49,8 @@ export class LoginComponent implements OnInit {
       })
     }).subscribe(result => {
       localStorage.setItem('message', result.message)
-      console.log(localStorage.getItem('message'))
       if(result.status == 200){
         localStorage.setItem('username', result.body)
-        console.log(localStorage.getItem('username'))
         this.router.navigate(['/feed'])
         
       } else {

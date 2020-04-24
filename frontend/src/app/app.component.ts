@@ -28,7 +28,7 @@ export class AppComponent {
   ) {
     this.matIconRegistry.addSvgIcon(
       "new-york-times",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/new-york-times.svg")
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/new-york-times.svg")
     )
   }
 
