@@ -72,19 +72,19 @@ export class PostComponent implements OnInit {
     let username = 'default';
     if (localStorage.getItem('username') != 'default'){
       username = localStorage.getItem('username');
+      if(this.isFavorited({"username": username, ...post})){
+        this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
+          // console.log(username);
+          this.updateFavorites(favs)
+        })
+      } else {
+        this.favoriteService.addFavorite({"username": username, ...post}).subscribe(favs => {
+          this.updateFavorites(favs)
+        })
+      }
     } else {
       localStorage.setItem('login_error', 'You have to login to save articles')
       this.router.navigate(['/login'])
-    }
-    if(this.isFavorited({"username": username, ...post})){
-      this.favoriteService.deleteFavorite({"username": username, ...post}).subscribe(favs => {
-        // console.log(username);
-        this.updateFavorites(favs)
-      })
-    } else {
-      this.favoriteService.addFavorite({"username": username, ...post}).subscribe(favs => {
-        this.updateFavorites(favs)
-      })
     }
   }
 
