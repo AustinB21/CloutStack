@@ -18,12 +18,13 @@ export class FilterComponent implements OnInit, OnChanges {
     faReddit,
     faGoogle
   }
-  display = this.source
   mobile = false
+  display = this.source
   constructor(public breakpointObserver: BreakpointObserver) { }
 
   didClick = false
   ngOnInit(): void {
+    this.display = this.source
     this.breakpointObserver
     .observe(['(max-width: 1000px)'])
     .subscribe((state: BreakpointState) => {
