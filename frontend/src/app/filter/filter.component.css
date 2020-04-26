@@ -2,14 +2,12 @@
     background: linear-gradient(45deg, #424242, #5B4240, #75423F, #A8433B, #A8433B, #C14339, #DB4338, #F44336);
 }
 
-.header:active {
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-
-
 .header-google {
     background: linear-gradient(45deg, #424242, #424C5B, #425575, #4268A8, #4268A8, #4272C1, #427BDB, #4285F4);
+}
+
+.header-newyorktimes {
+    background: linear-gradient(45deg, #424242, #393939, #2F2F2F, #1C1C1C, #1C1C1C, #131313, #090909, #000000);
 }
 
 .header {
@@ -26,11 +24,40 @@
     box-shadow: 0 9px #999;
 }
 
+.header-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* border: 2px solid #424242; */
+}
+
+.header-body {
+    display: flex;
+    justify-content: center;
+    width: 200%;
+    /* border: 2px solid #424242; */
+}
+
 .header:hover {
     filter: brightness(85%);
 }
 
+.header:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
 .header-active {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+    filter: brightness(85%);
+}
+
+.icon {
+    color: white;
+}
+
+.filter-white {
+    filter: invert(100%) sepia(96%) saturate(0%) hue-rotate(82deg) brightness(106%) contrast(103%);
+    margin-bottom: 12px;
 }

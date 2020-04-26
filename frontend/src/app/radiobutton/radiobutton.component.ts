@@ -8,7 +8,7 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 })
 export class RadiobuttonComponent implements OnInit {
   @Output() sourceClicked: EventEmitter<any> = new EventEmitter(); 
-  sources = ["Reddit", "Google"]
+  sources = ["Reddit", "Google", "New York Times"]
   column = "col-3"
   clickedSource: any
   constructor(public breakpointObserver: BreakpointObserver) { }
@@ -18,7 +18,7 @@ export class RadiobuttonComponent implements OnInit {
     .observe(['(max-width: 1000px)'])
     .subscribe((state: BreakpointState) => {
       if(state.matches) {
-        this.column = "col-6"
+        this.column = "col-4"
       } else {
         this.column = "col-3"
       }

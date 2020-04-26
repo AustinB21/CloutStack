@@ -1,4 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { faTwitter, faReddit, faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 
 @Component({
   selector: 'app-filter',
@@ -9,13 +12,38 @@ export class FilterComponent implements OnInit, OnChanges {
   @Input() source: any
   @Input() clickedSource: any
   @Output() clicked: EventEmitter<any> = new EventEmitter(); 
-  constructor() { }
+
+  faIcons = {
+    faTwitter,
+    faReddit,
+    faGoogle
+  }
+  display = this.source
+  mobile = false
+  constructor(public breakpointObserver: BreakpointObserver) { }
 
   didClick = false
   ngOnInit(): void {
-    console.log(
-      this.source + this.clickedSource
-    )
+    this.breakpointObserver
+    .observe(['(max-width: 1000px)'])
+    .subscribe((state: BreakpointState) => {
+      if(state.matches) {
+        this.mobile = true
+      } else {
+        this.mobile = false
+      }
+    })
+    this.breakpointObserver
+    .observe(['(max-width: 1500px)'])
+    .subscribe((state: BreakpointState) => {
+      if(state.matches) {
+        if (this.source === "New York Times") {
+          this.display = "NYT"
+        }
+      } else {
+        this.display = this.source
+      }
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {

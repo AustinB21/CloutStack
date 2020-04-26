@@ -19,12 +19,34 @@
 <ng-container *ngIf="didClick; else elseTemplate">
     <div [ngClass]="{
         'header-reddit' : source === 'Reddit',
-        'header-google' : source === 'Google'
-    }" class="header header-active" (click)="onClick()"> {{source}} </div>
+        'header-google' : source === 'Google',
+        'header-newyorktimes' : source === 'New York Times'
+    }" class="header header-active" (click)="onClick()">
+        <div class="header-logo">
+            <fa-icon *ngIf="source === 'twitter'" class="icon fa-lg" [icon]="faIcons.faTwitter"></fa-icon>
+            <fa-icon *ngIf="source === 'Reddit'" class="icon fa-lg" [icon]="faIcons.faReddit"></fa-icon>
+            <fa-icon *ngIf="source === 'Google'" class="icon fa-lg" [icon]="faIcons.faGoogle"></fa-icon>
+            <mat-icon *ngIf="source === 'New York Times'" class="filter-white" svgIcon="new-york-times"></mat-icon> 
+        </div>
+        <div *ngIf="!mobile" class="header-body">
+            {{ display }} 
+        </div>
+    </div>
 </ng-container>
 <ng-template #elseTemplate>
     <div [ngClass]="{
         'header-reddit' : source === 'Reddit',
-        'header-google' : source === 'Google'
-    }" class="header" (click)="onClick()"> {{source}} </div>
+        'header-google' : source === 'Google',
+        'header-newyorktimes' : source === 'New York Times'
+    }" class="header" (click)="onClick()">
+    <div class="header-logo">
+        <fa-icon *ngIf="source === 'twitter'" class="icon fa-lg" [icon]="faIcons.faTwitter"></fa-icon>
+        <fa-icon *ngIf="source === 'Reddit'" class="icon fa-lg" [icon]="faIcons.faReddit"></fa-icon>
+        <fa-icon *ngIf="source === 'Google'" class="icon fa-lg" [icon]="faIcons.faGoogle"></fa-icon>
+        <mat-icon *ngIf="source === 'New York Times'" class="filter-white" svgIcon="new-york-times"></mat-icon> 
+    </div>
+    <div *ngIf="!mobile" class="header-body">
+        {{ display }} 
+    </div>
+    </div>
 </ng-template>
