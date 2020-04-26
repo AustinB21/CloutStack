@@ -20,6 +20,7 @@ export class FeedComponent implements OnInit {
   column = "col-4"
 
   posts: any[];
+  original: any[];
   constructor(private frontpageService: FrontpageService, public breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
@@ -39,7 +40,15 @@ export class FeedComponent implements OnInit {
     this.frontpageService.getPosts()
         .subscribe(posts => {
           this.posts = posts
-          // console.log(posts)
+          this.original = posts
         })
+  }
+
+  filterPosts(source) {
+    if(source){
+      this.posts = this.original.filter(post => post.from_where == source)
+    } else {
+      this.posts = this.original
+    }
   }
 }

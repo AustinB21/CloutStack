@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
@@ -7,6 +7,7 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
   styleUrls: ['./radiobutton.component.css']
 })
 export class RadiobuttonComponent implements OnInit {
+  @Output() sourceClicked: EventEmitter<any> = new EventEmitter(); 
   sources = ["Reddit", "Google"]
   column = "col-3"
   clickedSource: any
@@ -26,6 +27,7 @@ export class RadiobuttonComponent implements OnInit {
 
   onClicked(value) {
     this.clickedSource = value
+    this.sourceClicked.emit(value)
   }
 
 }
