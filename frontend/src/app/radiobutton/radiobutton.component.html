@@ -1,5 +1,8 @@
-<!-- <div class="row justify-content-center">
+<div class="row justify-content-center">
     <div *ngFor="let filter of sources" [class]="column">
-        <app-filter></app-filter>
+        <app-filter 
+        [source]="filter"
+        [clickedSource]="clickedSource"
+        (clicked)="onClicked($event)"></app-filter>
     </div>
-</div> -->
+</div>
