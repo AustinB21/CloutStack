@@ -45,4 +45,19 @@ export class SavedComponent implements OnInit {
     this.posts = favs
   }
 
+  filterPosts(source) {
+    // console.log(this.favoriteService.filter(source))
+    if(source){
+      this.favoriteService.filter(source).then(favs => {
+        console.log(JSON.parse(favs))
+        this.posts = JSON.parse(favs)
+      })
+    } else {
+      this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
+        this.posts = favs
+      });
+    }
+    
+  }
+
 }

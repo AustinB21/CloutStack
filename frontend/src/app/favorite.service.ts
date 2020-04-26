@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+declare const filterSaved: any;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,5 +33,10 @@ export class FavoriteService {
         'Content-Type': 'application/json'
       })
     })
+  }
+
+  async filter(source: any){
+   const response = await filterSaved(source)
+   return response
   }
 }
