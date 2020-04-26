@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+    <div *ngFor="let filter of sources" [class]="column">
+        <ng-container *ngIf="clicked; else elseTemplate">
+            <div [ngClass]="{
+                'header-reddit' : filter === 'Reddit',
+                'header-google' : filter === 'Google'
+            }" class="header header-active" (click)="onClick()"> {{filter}} </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div [ngClass]="{
+                'header-reddit' : filter === 'Reddit',
+                'header-google' : filter === 'Google'
+            }" class="header" (click)="onClick()"> {{filter}} </div>
+        </ng-template>
+        
+    </div>
+</div>

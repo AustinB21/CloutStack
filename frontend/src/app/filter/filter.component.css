@@ -1,0 +1,36 @@
+.header-reddit {
+    background: linear-gradient(45deg, #424242, #5B4240, #75423F, #A8433B, #A8433B, #C14339, #DB4338, #F44336);
+}
+
+.header:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+
+.header-google {
+    background: linear-gradient(45deg, #424242, #424C5B, #425575, #4268A8, #4268A8, #4272C1, #427BDB, #4285F4);
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.header:hover {
+    filter: brightness(85%);
+}
+
+.header-active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
