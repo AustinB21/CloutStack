@@ -24,6 +24,7 @@ export class FeedComponent implements OnInit {
   posts: any[];
   original: any[];
   form : FormGroup;
+  filter = null
   constructor(private frontpageService: FrontpageService, public breakpointObserver: BreakpointObserver, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -56,7 +57,9 @@ export class FeedComponent implements OnInit {
 
     this.searchRegEx = new RegExp(searchString.toLowerCase());
     this.posts = this.posts.filter(post => this.searchRegEx.test(post.title.toLowerCase()));
-
+    if(this.filter){
+      this.posts = this.posts.filter(post => post.from_where == this.filter)
+    }
 
     
   }
@@ -73,8 +76,10 @@ export class FeedComponent implements OnInit {
   filterPosts(source) {
     if(source){
       this.posts = this.original.filter(post => post.from_where == source)
+      this.filter = source
     } else {
       this.posts = this.original
+      this.filter = null
     }
     if(this.searchRegEx){
       this.posts = this.posts.filter(post => this.searchRegEx.test(post.title.toLowerCase()))
