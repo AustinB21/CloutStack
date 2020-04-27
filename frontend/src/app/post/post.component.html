@@ -13,5 +13,7 @@
         </span><a [title]="postTitle" [href]="post.link" target="_blank">{{ postTitle }}</a>
         <span><fa-icon class="icon clickable fa-lg" [icon]="faDefault" (click)="onEvent(post)"></fa-icon></span>
     </div>
-    <img [id]="postId" alt="Article">
+    <a [href]="post.link" target="_blank" class="image">
+        <img [id]="postId" alt="Article">
+    </a>
 </div>
