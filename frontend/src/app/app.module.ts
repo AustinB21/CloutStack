@@ -21,6 +21,8 @@ import { FrontpageService } from './frontpage.service';
 import { FavoriteService } from './favorite.service';
 import { SignupComponent } from './signup/signup.component';
 import { MatIconModule } from '@angular/material/icon';
+import { FilterComponent } from './filter/filter.component';
+import { RadiobuttonComponent } from './radiobutton/radiobutton.component';
 
 
 
@@ -32,7 +34,9 @@ import { MatIconModule } from '@angular/material/icon';
     EmailValidationDirective,
     PostComponent,
     SavedComponent,
-    SignupComponent
+    SignupComponent,
+    FilterComponent,
+    RadiobuttonComponent
   ],
   imports: [
     BrowserModule,

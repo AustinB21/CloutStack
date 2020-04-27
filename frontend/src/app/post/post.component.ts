@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { faTwitter, faReddit, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { FavoriteService } from '../favorite.service';
@@ -12,7 +12,7 @@ declare const load: any;
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, AfterViewInit {
   @Input() post: any;
   @Input() faIcon;
   @Input() faIconOutline;

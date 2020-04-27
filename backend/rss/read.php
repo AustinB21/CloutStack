@@ -3,17 +3,8 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-//get the q parameter from URL
-// $q=$_GET["q"];
-
-// //find out which feed was selected
-// if($q=="Google") {
-//   $xml=("http://news.google.com/news?ned=us&topic=h&output=rss");
-// } elseif($q=="Reddit") {
-//   $xml=("http://fetchrss.com/rss/5e795a068a93f800478b45675e7960088a93f8900b8b4567.xml");
-// }
-$xml = ["http://news.google.com/news?ned=us&topic=h&output=rss", "http://fetchrss.com/rss/5e795a068a93f800478b45675e7960088a93f8900b8b4567.xml"];
-$sources = ["Google", "Reddit"];
+$xml = ["http://news.google.com/news?ned=us&topic=h&output=rss", "http://fetchrss.com/rss/5e795a068a93f800478b45675e7960088a93f8900b8b4567.xml", "http://fetchrss.com/rss/5e795a068a93f800478b45675ea5a68d8a93f8186b8b4567.xml"];
+$sources = ["Google", "Reddit", "New York Times"];
 $count = 0;
 $docs = [];
 foreach($xml as $key) {

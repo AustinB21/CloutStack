@@ -1,4 +1,7 @@
 <div class="container">
+    <app-radiobutton (sourceClicked)="filterPosts($event)"></app-radiobutton>
+</div>
+<div class="container">
     <div class="row">
         <div *ngFor="let post of posts" [class]="column">
             <app-post 

@@ -18,6 +18,7 @@ export class SavedComponent implements OnInit {
 
   posts = [];
   column = "col-4"
+  filter = null
 
   constructor(private favoriteService: FavoriteService, public breakpointObserver: BreakpointObserver) { }
 
@@ -43,6 +44,25 @@ export class SavedComponent implements OnInit {
   // Method called by the child component, post, when post is deleted
   updateFavorites(favs) {
     this.posts = favs
+    if(this.filter){
+      this.filterPosts(this.filter)
+    }
+  }
+
+  filterPosts(source) {
+    // console.log(this.favoriteService.filter(source))
+    if(source){
+      this.filter = source
+      this.favoriteService.filter(source).then(favs => {
+        this.posts = JSON.parse(favs)
+      })
+    } else {
+      this.filter = null
+      this.favoriteService.getFavorites(localStorage.getItem('username')).subscribe(favs => {
+        this.posts = favs
+      });
+    }
+    
   }
 
 }

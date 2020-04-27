@@ -1,4 +1,14 @@
 <div class="container">
+    <form class="input-container" (submit)="onSearch()" [formGroup]="form">
+      <span class="icon"><fa-icon [icon]="faIcons.faSearch"></fa-icon></span><input type="text" class="search" placeholder="Search for a post" formControlName="search"/>
+      <button hidden type="submit">hidden submit</button>
+    </form>
+        
+  </div>
+<div class="container">
+    <app-radiobutton (sourceClicked)="filterPosts($event)"></app-radiobutton>
+</div>
+<div class="container">
     <div class="row">
         <ng-container *ngIf="posts; else elseTemplate">
             <div *ngFor="let post of posts" [class]="column">
