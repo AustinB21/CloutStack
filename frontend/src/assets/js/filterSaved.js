@@ -43,7 +43,6 @@ function makeAjaxCall(data)
          if(xhr.readyState === 4){ // 4 complete
             if(xhr.status === 200){ 
                var res = xhr.response;
-               console.log(res);
                resolve(res);
             } else {
                // error handling

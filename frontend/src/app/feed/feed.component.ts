@@ -46,7 +46,6 @@ export class FeedComponent implements OnInit {
   searchRegEx: RegExp
   onSearch() {
     let searchString = this.form.get("search").value;
-    console.log(searchString);
     //searchString = (searchString == '') ? '' : searchString;
 
     if(this.source){
