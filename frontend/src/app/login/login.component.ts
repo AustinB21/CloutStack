@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   private PHP_API_URL = "http://localhost/Cloutstack/api/login";
-  loginModel = new LoginModel('', '', false);
+  loginModel = new LoginModel('', '');
 
   submitted = false;
 
@@ -67,9 +67,7 @@ export class LoginComponent implements OnInit {
      ]),
      'password': new FormControl(this.loginModel.password, [
        Validators.required,
-     ]),
-     'RememberMe': new FormControl(this.loginModel.remember)
-     
+     ]),     
    })
    var loginButton = document.getElementById("loginButton");
    loginButton.addEventListener('click', ()=>{
@@ -86,6 +84,4 @@ export class LoginComponent implements OnInit {
 
   get email() {return this.form.get('email');}
   get password() {return this.form.get('password');}
-  get RememberMe() {return this.form.get('RememberMe');}
-
 }
