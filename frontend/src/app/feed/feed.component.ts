@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutline } from '@fortawesome/free-regular-svg-icons';
 
 import { FrontpageService } from '../frontpage.service';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-feed',
@@ -15,13 +16,15 @@ export class FeedComponent implements OnInit {
   
   faIcons = {
     faStar,
-    faStarOutline
+    faStarOutline,
+    faSearch
   }
   column = "col-4"
 
   posts: any[];
   original: any[];
-  constructor(private frontpageService: FrontpageService, public breakpointObserver: BreakpointObserver) { }
+  form : FormGroup;
+  constructor(private frontpageService: FrontpageService, public breakpointObserver: BreakpointObserver, private fb: FormBuilder) { }
 
   ngOnInit(): void {
       this.breakpointObserver
@@ -34,6 +37,29 @@ export class FeedComponent implements OnInit {
         }
       })
       this.getPosts();
+
+      this.form = this.fb.group({
+        search: ['']
+      });
+  }
+
+  searchRegEx: RegExp
+  onSearch() {
+    let searchString = this.form.get("search").value;
+    console.log(searchString);
+    //searchString = (searchString == '') ? '' : searchString;
+
+    if(this.source){
+      this.posts = this.original.filter(post => post.from_where == this.source)
+    } else {
+      this.posts = this.original
+    }
+
+    this.searchRegEx = new RegExp(searchString);
+    this.posts = this.posts.filter(post => this.searchRegEx.test(post.title));
+
+
+    
   }
 
   getPosts(): void {
@@ -44,11 +70,15 @@ export class FeedComponent implements OnInit {
         })
   }
 
+  source : any
   filterPosts(source) {
     if(source){
       this.posts = this.original.filter(post => post.from_where == source)
     } else {
       this.posts = this.original
+    }
+    if(this.searchRegEx){
+      this.posts = this.posts.filter(post => this.searchRegEx.test(post.title))
     }
   }
 }

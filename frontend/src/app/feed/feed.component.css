@@ -1,3 +1,22 @@
 .container {
     max-width: 100%;
 }
+
+.icon {
+    padding-left: 25px;
+}
+
+.input-container {
+    position: relative;
+    border-radius: 25px;
+    border: 2px solid #424242;
+}
+
+.search {
+    padding: 20px; 
+    width: 80%;
+    height: 15px;
+    padding-left: 30px;
+    border: transparent;
+    outline: none !important;
+}
