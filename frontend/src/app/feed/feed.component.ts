@@ -55,8 +55,8 @@ export class FeedComponent implements OnInit {
       this.posts = this.original
     }
 
-    this.searchRegEx = new RegExp(searchString);
-    this.posts = this.posts.filter(post => this.searchRegEx.test(post.title));
+    this.searchRegEx = new RegExp(searchString.toLowerCase());
+    this.posts = this.posts.filter(post => this.searchRegEx.test(post.title.toLowerCase()));
 
 
     
@@ -78,7 +78,7 @@ export class FeedComponent implements OnInit {
       this.posts = this.original
     }
     if(this.searchRegEx){
-      this.posts = this.posts.filter(post => this.searchRegEx.test(post.title))
+      this.posts = this.posts.filter(post => this.searchRegEx.test(post.title.toLowerCase()))
     }
   }
 }
