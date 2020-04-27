@@ -27,10 +27,6 @@
                     Password is required
                 </div>
             </div>
-            <div class="form-check input-group remember-box-container">
-                <input class="form-check-input remember-box" type="checkbox" name="RememberMe" formControlName="RememberMe"
-                [(ngModel)]="loginModel.remember">Remember Me
-            </div>
 
             <button class="btn btn-primary btn-block login-button" type='submit' id="loginButton"
             [disabled]="email.invalid || password.invalid">Login</button>
